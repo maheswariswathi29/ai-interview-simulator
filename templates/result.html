@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Interview Simulator - Results</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1e293b,#2563eb);
+    min-height:100vh;
+    padding:40px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    background:white;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 15px 35px rgba(0,0,0,.3);
+}
+
+h1{
+    text-align:center;
+    color:#2563eb;
+    margin-bottom:30px;
+}
+
+.summary{
+    display:flex;
+    justify-content:space-around;
+    flex-wrap:wrap;
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.card{
+    flex:1;
+    min-width:220px;
+    background:#eff6ff;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.card h2{
+    color:#2563eb;
+    font-size:36px;
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#555;
+    font-size:18px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+th{
+    background:#2563eb;
+    color:white;
+    padding:15px;
+}
+
+td{
+    padding:15px;
+    border-bottom:1px solid #ddd;
+    vertical-align:top;
+}
+
+tr:nth-child(even){
+    background:#f8fafc;
+}
+
+.feedback{
+    color:#16a34a;
+    font-weight:bold;
+}
+
+.buttons{
+    margin-top:35px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.btn{
+    text-decoration:none;
+    color:white;
+    padding:14px 28px;
+    border-radius:10px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+.continue{
+    background:#7c3aed;
+}
+
+.continue:hover{
+    background:#6d28d9;
+}
+
+.report{
+    background:#2563eb;
+}
+
+.report:hover{
+    background:#1d4ed8;
+}
+
+.restart{
+    background:#22c55e;
+}
+
+.restart:hover{
+    background:#16a34a;
+}
+
+.home{
+    background:#f59e0b;
+}
+
+.home:hover{
+    background:#d97706;
+}
+
+.empty{
+    text-align:center;
+    color:red;
+    font-size:22px;
+    margin:40px 0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📊 AI Interview Results Dashboard</h1>
+
+{% if data %}
+
+<div class="summary">
+
+<div class="card">
+<h2>{{ data|length }}</h2>
+<p>Total Questions Answered</p>
+</div>
+
+<div class="card">
+<h2>{{ avg_confidence }}%</h2>
+<p>Average Confidence</p>
+</div>
+
+<div class="card">
+<h2>{{ avg_communication }}%</h2>
+<p>Communication</p>
+</div>
+
+</div>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Question</th>
+<th>Your Answer</th>
+<th>Confidence</th>
+<th>Communication</th>
+<th>AI Feedback</th>
+</tr>
+
+{% for row in data %}
+
+<tr>
+
+<td>{{ row[0] }}</td>
+
+<td>{{ row[1] }}</td>
+
+<td>{{ row[2] }}</td>
+
+<td>{{ row[3] }}%</td>
+
+<td>{{ row[4] }}%</td>
+
+<td class="feedback">{{ row[5] }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% else %}
+
+<div class="empty">
+No Interview Records Found.
+</div>
+
+{% endif %}
+
+<div class="buttons">
+
+{% if not session.get("completed") %}
+<a href="/interview" class="btn continue">
+▶ Continue Interview
+</a>
+{% endif %}
+
+<a href="/final_report" class="btn report">
+📋 Final Report
+</a>
+
+<a href="/restart" class="btn restart">
+🔄 Restart Interview
+</a>
+
+<a href="/" class="btn home">
+🏠 Home
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>
