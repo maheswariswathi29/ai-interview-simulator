@@ -1,0 +1,246 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Interview Simulator - Login</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI',sans-serif;
+        }
+
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(
+                135deg,
+                #0f172a,
+                #1e293b,
+                #2563eb
+            );
+        }
+
+        .login-box{
+            width:450px;
+            background:rgba(255,255,255,0.12);
+            backdrop-filter:blur(12px);
+            padding:40px;
+            border-radius:25px;
+            box-shadow:0 15px 35px rgba(0,0,0,0.3);
+            text-align:center;
+            color:white;
+            transition:0.3s;
+        }
+
+        .login-box:hover{
+            transform:translateY(-5px);
+        }
+
+        .top-buttons{
+            display:flex;
+            justify-content:flex-start;
+            margin-bottom:20px;
+        }
+
+        .back-btn{
+            background:#f59e0b;
+            color:white;
+            border:none;
+            padding:10px 20px;
+            border-radius:10px;
+            cursor:pointer;
+            font-size:15px;
+            font-weight:bold;
+            width:auto;
+        }
+
+        .back-btn:hover{
+            background:#d97706;
+        }
+
+        .icon{
+            font-size:70px;
+            margin-bottom:10px;
+        }
+
+        h1{
+            color:white;
+            margin-bottom:10px;
+        }
+
+        .subtitle{
+            color:#ddd;
+            margin-bottom:25px;
+            font-size:15px;
+            line-height:1.5;
+        }
+
+        .error{
+            background:#ef4444;
+            color:white;
+            padding:12px;
+            border-radius:10px;
+            margin-bottom:20px;
+            font-weight:bold;
+        }
+
+        input{
+            width:100%;
+            padding:14px;
+            margin:10px 0;
+            border:none;
+            border-radius:10px;
+            font-size:15px;
+        }
+
+        input:focus{
+            outline:none;
+            box-shadow:0 0 10px rgba(255,255,255,0.5);
+        }
+
+        button{
+            width:100%;
+            padding:14px;
+            margin-top:10px;
+            border:none;
+            border-radius:10px;
+            background:white;
+            color:#2563eb;
+            font-size:16px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        button:hover{
+            transform:translateY(-2px);
+            box-shadow:0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .features{
+            margin-top:20px;
+            background:rgba(255,255,255,0.15);
+            padding:15px;
+            border-radius:12px;
+            text-align:left;
+        }
+
+        .features h3{
+            text-align:center;
+            margin-bottom:10px;
+        }
+
+        .features p{
+            margin:6px 0;
+            color:#f1f1f1;
+        }
+
+        .demo{
+            margin-top:20px;
+            background:rgba(255,255,255,0.15);
+            padding:15px;
+            border-radius:12px;
+            color:white;
+        }
+
+        .footer{
+            margin-top:20px;
+            font-size:13px;
+            color:#ddd;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <div class="top-buttons">
+        <button
+            type="button"
+            class="back-btn"
+            onclick="window.location.href='/'">
+            ⬅ Back
+        </button>
+    </div>
+
+    <div class="icon">🤖</div>
+
+    <h1>AI Interview Simulator</h1>
+
+    <p class="subtitle">
+        Crack Your Dream Job with AI Practice,
+        Voice Support, Smart Scoring and Detailed Reports.
+    </p>
+
+    {% if error %}
+    <div class="error">
+        {{ error }}
+    </div>
+
+    {% endif %}
+    
+    <form method="POST" action="/login">
+
+        <input
+            type="text"
+            name="username"
+            placeholder="👤 Enter Username"
+            required>
+
+        <input
+            type="password"
+            name="password"
+            placeholder="🔒 Enter Password"
+            required>
+
+        <button type="submit">
+            🚀 Start Interview
+        </button>
+
+    </form>
+
+    <div class="features">
+
+        <h3>✨ Features</h3>
+
+        <p>✅ AI Generated Questions</p>
+        <p>✅ Voice Interview Support</p>
+        <p>✅ Confidence Analysis</p>
+        <p>✅ Communication Scoring</p>
+        <p>✅ Performance Dashboard</p>
+        <p>✅ Final Report Generation</p>
+
+    </div>
+
+    <div class="demo">
+
+        <strong>💡 Demo Credentials</strong>
+
+        <br><br>
+
+        Username: <b>admin</b>
+
+        <br>
+
+        Password: <b>1234</b>
+
+    </div>
+
+    <div class="footer">
+        © 2026 AI Interview Simulator | Flask + SQLite
+    </div>
+
+</div>
+
+</body>
+</html>
+```
