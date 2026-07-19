@@ -1,0 +1,70 @@
+/* ===========================
+   CLICKABLE FEATURE CARDS
+=========================== */
+
+.features a{
+    text-decoration:none;
+    color:inherit;
+}
+
+.feature{
+    display:block;
+    cursor:pointer;
+}
+
+.feature:hover{
+    transform:translateY(-8px) scale(1.05);
+    background:#dbeafe;
+    color:#2563eb;
+}
+
+/* ===========================
+   BUTTON COLORS
+=========================== */
+
+.result-btn{
+    background:#2563eb;
+    color:white;
+}
+
+.feedback-btn{
+    background:#22c55e;
+    color:white;
+}
+
+.analytics-btn{
+    background:#f59e0b;
+    color:white;
+}
+
+.report-btn{
+    background:#8b5cf6;
+    color:white;
+}
+
+/* ===========================
+   DASHBOARD CARDS
+=========================== */
+
+.dashboard-card{
+    background:white;
+    color:#111;
+    width:280px;
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
+    transition:.3s;
+}
+
+.dashboard-card:hover{
+    transform:translateY(-8px);
+}
+
+.dashboard-container{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
