@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Select Interview Category</title>
+
+
+<style>
+
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+
+}
+
+
+
+body{
+
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+
+    background:linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b,
+        #2563eb
+    );
+
+
+}
+
+
+
+
+.container{
+
+
+    width:650px;
+
+    padding:40px;
+
+
+    background:
+    rgba(255,255,255,0.15);
+
+
+    backdrop-filter:blur(15px);
+
+
+    border-radius:30px;
+
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,0.35);
+
+
+    text-align:center;
+
+
+    color:white;
+
+
+}
+
+
+
+
+h1{
+
+
+    font-size:36px;
+
+    margin-bottom:15px;
+
+
+}
+
+
+
+p{
+
+
+    color:#dbeafe;
+
+    margin-bottom:35px;
+
+    font-size:17px;
+
+
+}
+
+
+
+
+.categories{
+
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:20px;
+
+
+}
+
+
+
+
+
+.card{
+
+
+    padding:25px 15px;
+
+
+    background:white;
+
+
+    color:#2563eb;
+
+
+    border-radius:18px;
+
+
+    text-decoration:none;
+
+
+    font-size:20px;
+
+
+    font-weight:bold;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+
+.card:hover{
+
+
+    transform:translateY(-8px) scale(1.03);
+
+
+    background:#dbeafe;
+
+
+    box-shadow:
+    0 15px 25px rgba(0,0,0,.3);
+
+
+}
+
+
+
+
+
+.icon{
+
+
+    display:block;
+
+    font-size:40px;
+
+    margin-bottom:10px;
+
+
+}
+
+
+
+
+
+.back{
+
+
+    display:inline-block;
+
+
+    margin-top:35px;
+
+
+    padding:13px 30px;
+
+
+    background:#f59e0b;
+
+
+    color:white;
+
+
+    text-decoration:none;
+
+
+    border-radius:12px;
+
+
+    font-weight:bold;
+
+
+}
+
+
+
+
+.back:hover{
+
+
+    background:#d97706;
+
+
+}
+
+
+
+
+
+@media(max-width:700px){
+
+
+.container{
+
+    width:90%;
+
+}
+
+
+.categories{
+
+    grid-template-columns:1fr;
+
+}
+
+
+}
+
+
+
+
+</style>
+
+
+</head>
+
+
+
+
+<body>
+
+
+
+<div class="container">
+
+
+
+<h1>
+🎯 Select Interview Category
+</h1>
+
+
+
+<p>
+Choose the interview type you want AI to conduct
+</p>
+
+
+
+
+
+<div class="categories">
+
+
+
+<a class="card" href="/set_category/python">
+
+<span class="icon">
+🐍
+</span>
+
+Python Interview
+
+</a>
+
+
+
+
+
+<a class="card" href="/set_category/java">
+
+<span class="icon">
+☕
+</span>
+
+Java Interview
+
+</a>
+
+
+
+
+
+<a class="card" href="/set_category/c">
+
+<span class="icon">
+💻
+</span>
+
+C Programming Interview
+
+</a>
+
+
+
+
+
+<a class="card" href="/set_category/hr">
+
+<span class="icon">
+👨‍💼
+</span>
+
+HR Interview
+
+</a>
+
+
+
+
+
+<a class="card" href="/set_category/project">
+
+<span class="icon">
+📂
+</span>
+
+Project Viva
+
+</a>
+
+
+
+</div>
+
+
+
+
+
+<a class="back" href="/">
+
+⬅ Back To Home
+
+</a>
+
+
+
+</div>
+
+
+
+</body>
+
+
+</html>
