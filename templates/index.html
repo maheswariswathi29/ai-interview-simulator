@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Interview Simulator</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI',sans-serif;
+        }
+
+        body{
+            background:linear-gradient(135deg,#0f172a,#1e293b,#2563eb);
+            min-height:100vh;
+            color:white;
+        }
+
+        .hero{
+            text-align:center;
+            padding:80px 20px 40px;
+        }
+
+        .hero h1{
+            font-size:60px;
+            margin-bottom:20px;
+        }
+
+        .hero p{
+            font-size:22px;
+            max-width:800px;
+            margin:auto;
+            margin-bottom:30px;
+            line-height:1.6;
+        }
+
+        .btn{
+            display:inline-block;
+            background:white;
+            color:#2563eb;
+            padding:15px 35px;
+            border-radius:30px;
+            text-decoration:none;
+            font-weight:bold;
+            border:none;
+            cursor:pointer;
+            transition:.3s;
+        }
+
+        .btn:hover{
+            transform:translateY(-4px);
+            box-shadow:0 10px 25px rgba(0,0,0,.3);
+        }
+
+        .stats{
+            display:flex;
+            justify-content:center;
+            gap:25px;
+            flex-wrap:wrap;
+            margin:30px auto;
+            padding:20px;
+        }
+
+        .card{
+            width:220px;
+            background:rgba(255,255,255,0.12);
+            backdrop-filter:blur(10px);
+            border-radius:20px;
+            padding:25px;
+            text-align:center;
+            box-shadow:0 5px 20px rgba(0,0,0,.2);
+        }
+
+        .card h2{
+            font-size:35px;
+            margin-bottom:10px;
+        }
+
+        .features{
+            display:flex;
+            justify-content:center;
+            gap:25px;
+            flex-wrap:wrap;
+            margin:20px auto 50px;
+            padding:20px;
+        }
+
+        .feature{
+            background:white;
+            color:#111;
+            padding:20px;
+            border-radius:15px;
+            width:240px;
+            text-align:center;
+            font-weight:bold;
+            transition:.3s;
+            box-shadow:0 5px 15px rgba(0,0,0,.2);
+        }
+
+        .feature:hover{
+            transform:translateY(-5px);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<section class="hero">
+
+    <h1>🚀 AI Interview Simulator</h1>
+
+    <p>
+        Practice Technical, HR and Behavioral Interviews
+        with AI-powered Feedback, Voice Support,
+        Smart Scoring and Detailed Performance Reports.
+    </p>
+
+    <a href="/login" class="btn">
+        Start Interview
+    </a>
+
+</section>
+
+<div class="stats">
+
+    <div class="card">
+        <h2>500+</h2>
+        <p>Interview Questions</p>
+    </div>
+
+    <div class="card">
+        <h2>AI</h2>
+        <p>Smart Evaluation</p>
+    </div>
+
+    <div class="card">
+        <h2>Voice</h2>
+        <p>Speech Recognition</p>
+    </div>
+
+    <div class="card">
+        <h2>100%</h2>
+        <p>Performance Report</p>
+    </div>
+
+</div>
+
+<div class="features">
+
+    <a href="/voice_answers" class="feature">
+        🎤<br><br>
+        Voice-Based Answers
+    </a>
+
+    <a href="/ai_feedback" class="feature">
+        🤖<br><br>
+        AI Feedback
+    </a>
+
+    <a href="/results" class="feature">
+        📊<br><br>
+        Performance Analytics
+    </a>
+
+    <a href="/final_report" class="feature">
+        🏆<br><br>
+        Final Result Report
+    </a>
+
+</div>
+
+</body>
+</html>
