@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Interview Simulator</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI,Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1e293b,#2563eb);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.container{
+    width:90%;
+    max-width:900px;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(12px);
+    padding:35px;
+    border-radius:25px;
+    color:white;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+.top-buttons{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.btn{
+    border:none;
+    cursor:pointer;
+    padding:12px 22px;
+    border-radius:10px;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.back-btn{
+    background:#f59e0b;
+    color:white;
+}
+
+.home-btn{
+    background:#16a34a;
+    color:white;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.progress-container{
+    margin-bottom:20px;
+}
+
+.progress-info{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:8px;
+}
+
+.progress{
+    width:100%;
+    height:12px;
+    background:#d1d5db;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    background:#22c55e;
+    width:{{ progress }}%;
+    transition:.5s;
+}
+
+.timer{
+    margin-top:10px;
+    text-align:right;
+    font-weight:bold;
+    color:#fde68a;
+}
+
+.question{
+    background:rgba(255,255,255,.15);
+    padding:20px;
+    border-radius:15px;
+    font-size:22px;
+    margin:25px 0;
+}
+
+textarea{
+    width:100%;
+    min-height:180px;
+    border:none;
+    border-radius:15px;
+    padding:15px;
+    resize:none;
+    font-size:16px;
+}
+
+textarea:focus{
+    outline:none;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:20px;
+}
+
+.voice{
+    background:#22c55e;
+    color:white;
+}
+
+.stop{
+    background:#ef4444;
+    color:white;
+}
+
+.next{
+    background:#2563eb;
+    color:white;
+}
+
+.test{
+    background:#8b5cf6;
+    color:white;
+}
+
+.voice-status{
+    margin-top:20px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.feedback{
+    margin-top:25px;
+    background:rgba(255,255,255,.15);
+    padding:20px;
+    border-radius:15px;
+}
+
+@media(max-width:768px){
+
+.buttons{
+    flex-direction:column;
+}
+
+.btn{
+    width:100%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="top-buttons">
+
+<button class="btn back-btn"
+onclick="window.location.href='/select_category'">
+⬅ Back
+</button>
+
+<button class="btn home-btn"
+onclick="window.location.href='/'">
+🏠 Home
+</button>
+
+</div>
+
+<div class="title">
+
+<h1>🎤 AI Interview Simulator</h1>
+
+</div>
+
+<div class="progress-container">
+
+<div class="progress-info">
+
+<span>Interview Progress</span>
+
+<span>{{ progress }}%</span>
+
+</div>
+
+<div class="progress">
+
+<div class="progress-bar"></div>
+
+</div>
+
+<div class="timer">
+
+⏳ Time Left :
+<span id="timer">60</span> sec
+
+</div>
+
+</div>
+
+<div class="question">
+
+{{ question }}
+
+</div>
+
+<form action="/next" method="POST">
+
+<textarea
+id="answer"
+name="answer"
+placeholder="Type or speak your answer..."
+required></textarea>
+
+<div class="buttons">
+
+<button
+type="button"
+class="btn voice"
+onclick="startVoice()">
+
+🎤 Start Voice
+
+</button>
+
+<button
+type="button"
+class="btn stop"
+onclick="stopVoice()">
+
+🛑 Stop Voice
+
+</button>
+
+<button
+type="button"
+class="btn test"
+onclick="testMic()">
+
+🎙 Test Mic
+
+</button>
+
+<button
+type="submit"
+class="btn next">
+
+➡ Next Question
+
+</button>
+
+</div>
+
+</form>
+
+<div
+class="voice-status"
+id="voiceStatus">
+
+🎤 Voice Recognition Ready
+
+</div>
+
+{% if feedback %}
+
+<div class="feedback">
+
+<h3>🤖 AI Feedback</h3>
+
+<p>{{ feedback }}</p>
+
+</div>
+
+{% endif %}
+
+</div>
+
+<script>
+
+let recognition=null;
+
+let time=60;
+
+let interval;
+
+// ---------------- Timer ----------------
+
+function startTimer(){
+
+clearInterval(interval);
+
+time=60;
+
+document.getElementById("timer").innerHTML=time;
+
+interval=setInterval(function(){
+
+time--;
+
+document.getElementById("timer").innerHTML=time;
+
+if(time<=0){
+
+clearInterval(interval);
+
+document.forms[0].submit();
+
+}
+
+},1000);
+
+}
+
+startTimer();
+
+// ---------------- Voice ----------------
+
+function startVoice(){
+
+const SpeechRecognition=
+window.SpeechRecognition||
+window.webkitSpeechRecognition;
+
+if(!SpeechRecognition){
+
+alert("Speech Recognition not supported.");
+
+return;
+
+}
+
+recognition=new SpeechRecognition();
+
+recognition.lang="en-US";
+
+recognition.continuous=false;
+
+recognition.interimResults=false;
+
+recognition.onstart=function(){
+
+document.getElementById("voiceStatus").innerHTML="🎤 Listening...";
+
+};
+
+recognition.onresult=function(event){
+
+document.getElementById("answer").value=
+event.results[0][0].transcript;
+
+};
+
+recognition.onerror=function(e){
+
+document.getElementById("voiceStatus").innerHTML=
+"❌ "+e.error;
+
+};
+
+recognition.onend=function(){
+
+document.getElementById("voiceStatus").innerHTML=
+"✅ Voice Stopped";
+
+};
+
+recognition.start();
+
+}
+
+// ---------------- Stop Voice ----------------
+
+function stopVoice(){
+
+if(recognition){
+
+recognition.stop();
+
+}
+
+}
+
+// ---------------- Test Mic ----------------
+
+function testMic(){
+
+navigator.mediaDevices.getUserMedia({audio:true})
+
+.then(function(stream){
+
+alert("✅ Microphone Working");
+
+stream.getTracks().forEach(track=>track.stop());
+
+})
+
+.catch(function(err){
+
+alert(err.message);
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
