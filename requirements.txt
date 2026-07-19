@@ -1,0 +1,8 @@
+Flask
+gunicorn
+textblob
+pandas
+numpy
+scikit-learn
+google-generativeai
+flask-sqlalchemy
